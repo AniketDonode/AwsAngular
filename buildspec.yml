@@ -17,5 +17,5 @@ phases:
   post_build:
     commands:
       - echo build process finished, we should uplload to S3 now
-      - aws s3 cp dist s3://${S3_BUCKET} --recursive
+      - aws s3 cp dist/${APP_NAME} s3://${S3_BUCKET} --recursive
       - echo Build completed on `date`
