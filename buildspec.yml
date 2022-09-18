@@ -2,6 +2,7 @@ version: 0.2
 env:
   variables:
     APP_NAME: "angular-signup-verification-boilerplate"
+    S3_BUCKET: "my-awsome-bucket-of-files"
 phases:
   install:
     runtime-versions:
@@ -16,6 +17,5 @@ phases:
   post_build:
     commands:
       - echo build process finished, we should uplload to S3 now
-      - cd dist/$APP_NAME
-      - ls -la
-      - aws s3 sync my-awsome-bucket-of-files/
+      - aws s3 cp dist s3://${S3_BUCKET} --recursive
+      - echo Build completed on `date`
